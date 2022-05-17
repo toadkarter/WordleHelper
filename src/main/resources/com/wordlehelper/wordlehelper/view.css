@@ -1,0 +1,14 @@
+.green-letter-panel {
+    -fx-background-color: #019a01;
+    -fx-text-fill: white;
+}
+
+.yellow-letter-panel {
+    -fx-background-color: #ffc425;
+    -fx-text-fill: white;
+}
+
+.grey-letter-panel {
+    -fx-background-color: #949494;
+    -fx-text-fill: white;
+}
