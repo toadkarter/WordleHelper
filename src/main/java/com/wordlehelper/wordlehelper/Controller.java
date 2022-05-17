@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+import java.io.FileNotFoundException;
+
 public class Controller {
 
     @FXML
@@ -23,7 +25,7 @@ public class Controller {
         model = new Model();
     }
 
-    public void submit() {
+    public void submit() throws FileNotFoundException {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
