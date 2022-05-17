@@ -1,5 +1,7 @@
 package com.wordlehelper.wordlehelper;
 
+import java.util.Arrays;
+
 public class Guess {
     private final char[] correctLetters;
     private final char[] includedLetters;
@@ -40,5 +42,14 @@ public class Guess {
 
     private int getLocationOfWrongLetter(StringBuilder alphabet, char wrongLetter) {
         return alphabet.indexOf(String.valueOf(wrongLetter));
+    }
+
+    @Override
+    public String toString() {
+        return "Guess{" +
+                "correctLetters=" + Arrays.toString(correctLetters) +
+                ", includedLetters=" + Arrays.toString(includedLetters) +
+                ", possibleLetters=" + Arrays.toString(possibleLetters) +
+                '}';
     }
 }

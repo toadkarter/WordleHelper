@@ -17,11 +17,18 @@ public class Controller {
     @FXML
     private TextField wrongLettersContainer;
 
+    private Model model;
+
+    public void initialize() {
+        model = new Model();
+    }
 
     public void submit() {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
+
+        model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
     }
 
     private String getGreenLetters() {
