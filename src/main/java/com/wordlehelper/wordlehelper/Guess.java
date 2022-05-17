@@ -1,36 +1,34 @@
 package com.wordlehelper.wordlehelper;
 
-import java.util.Arrays;
-
 public class Guess {
-    private final char[] correctLetters;
-    private final char[] includedLetters;
-    private final char[] possibleLetters;
+    private final String correctLetters;
+    private final String includedLetters;
+    private final String possibleLetters;
 
     public Guess(String correctLetters, String includedLetters, String wrongLetters) {
-        this.correctLetters = correctLetters.toLowerCase().toCharArray();
-        this.includedLetters = includedLetters.toLowerCase().toCharArray();
+        this.correctLetters = correctLetters.toLowerCase();
+        this.includedLetters = includedLetters.toLowerCase();
         this.possibleLetters = getPossibleLetters(wrongLetters);
     }
 
-    public char[] getCorrectLetters() {
+    public String getCorrectLetters() {
         return correctLetters;
     }
 
-    public char[] getIncludedLetters() {
+    public String getIncludedLetters() {
         return includedLetters;
     }
 
-    public char[] getPossibleLetters() {
+    public String getPossibleLetters() {
         return possibleLetters;
     }
 
-    private char[] getPossibleLetters(String wrongLetters) {
+    private String getPossibleLetters(String wrongLetters) {
         StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
         for (char wrongLetter: wrongLetters.toCharArray()) {
             removeWrongLetterFromAlphabet(alphabet, wrongLetter);
         }
-        return alphabet.toString().toCharArray();
+        return alphabet.toString();
     }
 
     private void removeWrongLetterFromAlphabet(StringBuilder alphabet, char wrongLetter) {
@@ -47,9 +45,9 @@ public class Guess {
     @Override
     public String toString() {
         return "Guess{" +
-                "correctLetters=" + Arrays.toString(correctLetters) +
-                ", includedLetters=" + Arrays.toString(includedLetters) +
-                ", possibleLetters=" + Arrays.toString(possibleLetters) +
+                "correctLetters='" + correctLetters + '\'' +
+                ", includedLetters='" + includedLetters + '\'' +
+                ", possibleLetters='" + possibleLetters + '\'' +
                 '}';
     }
 }
