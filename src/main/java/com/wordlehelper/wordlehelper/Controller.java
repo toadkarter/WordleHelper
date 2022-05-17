@@ -22,10 +22,14 @@ public class Controller {
     private Model model;
 
     public void initialize() {
-        model = new Model();
+        try {
+            model = new Model();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void submit() throws FileNotFoundException {
+    public void submit() {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
@@ -36,18 +40,20 @@ public class Controller {
     private String getGreenLetters() {
         ObservableList<Node> greenLetters = correctLettersContainer.getChildren();
         StringBuilder correctLetters = new StringBuilder();
-
         for (Node letter: greenLetters) {
-            String currentLetter = ((TextField) letter).getText();
-
-            if (currentLetter.equals("")) {
-                correctLetters.append("*");
-            } else {
-                correctLetters.append(currentLetter);
-            }
+            addGreenLetter(correctLetters, (TextField) letter);
         }
-
         return correctLetters.toString();
+    }
+
+    private void addGreenLetter(StringBuilder correctLetters, TextField letter) {
+        String currentLetter = letter.getText();
+
+        if (currentLetter.equals("")) {
+            correctLetters.append("*");
+        } else {
+            correctLetters.append(currentLetter);
+        }
     }
 
 }
