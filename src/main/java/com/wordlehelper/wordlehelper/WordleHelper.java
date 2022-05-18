@@ -5,10 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
 
+//TODO: Refactoring
+//TODO: Add Icon
+//TODO: Add error handling in Guess constructor
 public class WordleHelper extends Application {
     @Override
     public void start(Stage stage) throws IOException {
