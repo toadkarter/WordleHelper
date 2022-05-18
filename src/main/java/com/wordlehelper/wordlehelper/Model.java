@@ -7,20 +7,16 @@ import java.util.ArrayList;
 public class Model {
     Dictionary dictionary;
     Guess guess;
-    ArrayList<String> answers = new ArrayList<>();
+    ArrayList<String> answers;
 
     public Model() throws FileNotFoundException {
         dictionary = new Dictionary();
     }
 
     public ArrayList<String> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
-        System.out.println("In the get possible answers field: ");
         guess = new Guess(greenLetters, yellowLetters, greyLetters);
-        System.out.println(guess.getPossibleLetters());
-        System.out.println(guess.getCorrectLetters());
-        System.out.println(guess.getIncludedLetters());
+        answers = new ArrayList<>();
         String answer = "";
-        System.out.println(guess.getPossibleLetters().toCharArray());
         generatePotentialAnswers(guess.getCorrectLetters(), answer);
         return answers;
     }
