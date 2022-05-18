@@ -17,3 +17,8 @@
     -fx-background-color: #fbf6ed;
     -fx-border-radius: 50;
 }
+
+#list-view .list-cell {
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}

@@ -48,24 +48,27 @@ public class Controller {
 
     private void initAllLetterContainers() {
         initCorrectLettersContainer();
-        setTextFieldToUpperCaseOnly(includedLettersContainer);
-        setTextFieldToUpperCaseOnly(wrongLettersContainer);
+        setTextFieldToUpperCaseOnly(includedLettersContainer, false);
+        setTextFieldToUpperCaseOnly(wrongLettersContainer, false);
     }
 
     private void initCorrectLettersContainer() {
         for (Node correctLetterNode: correctLettersBox.getChildren()) {
             TextField correctLetterField = (TextField)correctLetterNode;
-            setTextFieldToUpperCaseOnly(correctLetterField);
+            setTextFieldToUpperCaseOnly(correctLetterField, true);
             correctLettersContainer.add(correctLetterField);
         }
     }
 
-    private void setTextFieldToUpperCaseOnly(TextField textField) {
+    private void setTextFieldToUpperCaseOnly(TextField textField, boolean correctLetterTextField) {
         TextFormatter<Object> upperCaseFormatter = new TextFormatter<>((change -> {
             change.setText(change.getText().toUpperCase());
-            String newText = change.getControlNewText();
-            if (newText.length() > 1) {
-                return null;
+
+            if (correctLetterTextField) {
+                String newText = change.getControlNewText();
+                if (newText.length() > 1) {
+                    return null;
+                }
             }
             return change;
         }));
