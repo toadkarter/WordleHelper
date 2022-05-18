@@ -1,4 +1,4 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.model.services;
 
 public class Answer implements Comparable<Answer> {
     private final String word;

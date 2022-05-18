@@ -1,4 +1,4 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.model;
 
 
 public class Guess {

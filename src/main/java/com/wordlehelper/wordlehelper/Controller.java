@@ -1,5 +1,6 @@
 package com.wordlehelper.wordlehelper;
 
+import com.wordlehelper.wordlehelper.model.Model;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Controller {
 
@@ -62,11 +62,14 @@ public class Controller {
     }
 
     private void setTextFieldToUpperCaseOnly(TextField textField, boolean correctLetterTextField) {
-        TextFormatter<Object> upperCaseFormatter = new TextFormatter<>((change -> {
+        TextFormatter<Object> textFieldFormatter = new TextFormatter<>((change -> {
+            if (change.getText().isEmpty()) { return change; }
+            if (!change.getText().matches("[A-Za-z]")) { return null; }
+
             change.setText(change.getText().toUpperCase());
 
+            String newText = change.getControlNewText();
             if (correctLetterTextField) {
-                String newText = change.getControlNewText();
                 if (newText.length() > 1) {
                     return null;
                 }
@@ -74,7 +77,7 @@ public class Controller {
             return change;
         }));
 
-        textField.setTextFormatter(upperCaseFormatter);
+        textField.setTextFormatter(textFieldFormatter);
     }
 
     public void submit() {

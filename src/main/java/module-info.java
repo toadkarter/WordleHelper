@@ -7,4 +7,8 @@ module com.wordlehelper.wordlehelper {
 
     opens com.wordlehelper.wordlehelper to javafx.fxml;
     exports com.wordlehelper.wordlehelper;
+    exports com.wordlehelper.wordlehelper.model;
+    opens com.wordlehelper.wordlehelper.model to javafx.fxml;
+    exports com.wordlehelper.wordlehelper.model.services;
+    opens com.wordlehelper.wordlehelper.model.services to javafx.fxml;
 }

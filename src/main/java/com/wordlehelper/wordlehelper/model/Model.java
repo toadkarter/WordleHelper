@@ -1,8 +1,9 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.model;
+
+import com.wordlehelper.wordlehelper.model.services.AnswerGenerator;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // TODO: Refactor the generation of answers into a separate class
 public class Model {

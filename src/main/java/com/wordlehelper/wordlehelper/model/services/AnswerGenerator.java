@@ -1,4 +1,6 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.model.services;
+
+import com.wordlehelper.wordlehelper.model.Guess;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

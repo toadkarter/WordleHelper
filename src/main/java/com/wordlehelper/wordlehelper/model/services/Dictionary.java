@@ -1,4 +1,4 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.model.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;

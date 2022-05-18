@@ -10,7 +10,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
-//TODO: Refactoring
 //TODO: Add Icon
 //TODO: Add error handling in Guess constructor
 public class WordleHelper extends Application {
