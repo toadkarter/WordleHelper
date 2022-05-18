@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordlehelper.wordlehelper.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="471.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordlehelper.wordlehelper.Controller">
    <children>
       <VBox alignment="BASELINE_CENTER" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #fbf6ed;">
          <children>
@@ -131,7 +131,7 @@
       </VBox>
       <AnchorPane fx:id="answerWindow" disable="true" opacity="0.0" prefHeight="393.0" prefWidth="358.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="460.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="500.0" />
             <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="341.0" prefWidth="319.0" styleClass="answer-window">
                <children>
                   <Label text="ANSWERS" textAlignment="CENTER">

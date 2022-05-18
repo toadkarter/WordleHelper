@@ -13,7 +13,7 @@ public class Dictionary {
     public Dictionary() throws FileNotFoundException {
         Scanner textFile = new Scanner(new File("src/words.txt"));
         while (textFile.hasNext()) {
-            dictionary.add(textFile.next().trim());
+            dictionary.add(textFile.next().trim().toLowerCase());
         }
         textFile.close();
     }

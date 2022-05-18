@@ -63,6 +63,10 @@ public class Controller {
     private void setTextFieldToUpperCaseOnly(TextField textField) {
         TextFormatter<Object> upperCaseFormatter = new TextFormatter<>((change -> {
             change.setText(change.getText().toUpperCase());
+            String newText = change.getControlNewText();
+            if (newText.length() > 1) {
+                return null;
+            }
             return change;
         }));
 

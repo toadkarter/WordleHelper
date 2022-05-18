@@ -16,6 +16,7 @@ public class WordleHelper extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
         stage.setTitle("WordleHelper");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
