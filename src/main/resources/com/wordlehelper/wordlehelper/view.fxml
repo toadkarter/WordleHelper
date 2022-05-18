@@ -132,7 +132,7 @@
       <AnchorPane fx:id="answerWindow" disable="true" opacity="0.0" prefHeight="393.0" prefWidth="358.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-            <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="330.0" prefWidth="319.0" styleClass="answer-window">
+            <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="341.0" prefWidth="319.0" styleClass="answer-window">
                <children>
                   <Label text="ANSWERS" textAlignment="CENTER">
                      <font>
@@ -147,9 +147,14 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button mnemonicParsing="false" onAction="#back" text="Back">
+                  <Button mnemonicParsing="false" onAction="#keepGuessing" text="Keep Guessing">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#startAgain" text="Start Again">
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                </children>

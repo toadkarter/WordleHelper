@@ -75,9 +75,13 @@ public class Controller {
         answerTextField.setItems(FXCollections.observableArrayList(answers));
     }
 
-    public void back() {
+    public void startAgain() {
         toggleAnswerWindow();
         clearTextFields();
+    }
+
+    public void keepGuessing() {
+        toggleAnswerWindow();
     }
 
     private void toggleAnswerWindow() {
@@ -100,10 +104,6 @@ public class Controller {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
-        System.out.println("In the controller:");
-        System.out.println("Green letters are " + greenLetters);
-        System.out.println("Yellow letters are " + yellowLetters);
-        System.out.println("Grey letters are " + greyLetters);
         return model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
     }
 
