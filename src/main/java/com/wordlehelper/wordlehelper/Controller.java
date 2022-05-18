@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -30,9 +31,6 @@ public class Controller {
     @FXML
     private ListView<String> answerTextField;
 
-    @FXML
-    private Button backButton;
-
     private Model model;
 
     public void initialize() {
@@ -51,6 +49,7 @@ public class Controller {
 
     public void back() {
         answerWindow.setVisible(false);
+        clearTextFields();
     }
 
     private ArrayList<String> getAnswers() {
@@ -76,6 +75,18 @@ public class Controller {
             correctLetters.append("*");
         } else {
             correctLetters.append(currentLetter);
+        }
+    }
+
+    private void clearTextFields() {
+        clearCorrectLetters();
+        includedLettersContainer.clear();
+        wrongLettersContainer.clear();
+    }
+
+    private void clearCorrectLetters() {
+        for (Node correctLetter: correctLettersContainer.getChildren()) {
+            ((TextField)correctLetter).clear();
         }
     }
 }

@@ -14,6 +14,7 @@ public class WordleHelper extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(WordleHelper.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
+        stage.setTitle("WordleHelper");
         stage.setScene(scene);
         stage.show();
     }

@@ -147,7 +147,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Back">
+                  <Button mnemonicParsing="false" onAction="#back" text="Back">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
