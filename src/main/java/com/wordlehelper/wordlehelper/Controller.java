@@ -4,8 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -30,6 +30,9 @@ public class Controller {
     @FXML
     private ListView<String> answerTextField;
 
+    @FXML
+    private Button backButton;
+
     private Model model;
 
     public void initialize() {
@@ -42,11 +45,19 @@ public class Controller {
 
     public void submit() {
         answerWindow.setVisible(true);
+        ArrayList<String> answers = getAnswers();
+        answerTextField.setItems(FXCollections.observableArrayList(answers));
+    }
+
+    public void back() {
+        answerWindow.setVisible(false);
+    }
+
+    private ArrayList<String> getAnswers() {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
-        ArrayList<String> answers = model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
-        answerTextField.setItems(FXCollections.observableArrayList(answers));
+        return model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
     }
 
     private String getGreenLetters() {
@@ -67,5 +78,4 @@ public class Controller {
             correctLetters.append(currentLetter);
         }
     }
-
 }

@@ -131,8 +131,29 @@
       </VBox>
       <AnchorPane fx:id="answerWindow" prefHeight="393.0" prefWidth="358.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="385.0" layoutX="75.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
-            <ListView fx:id="answerTextField" layoutX="150.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+            <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="330.0" prefWidth="319.0" style="-fx-background-color: #fbf6ed;">
+               <children>
+                  <Label text="ANSWERS" textAlignment="CENTER">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="answerTextField" prefHeight="200.0" prefWidth="248.0">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </ListView>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" text="Back">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
