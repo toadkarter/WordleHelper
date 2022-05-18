@@ -79,13 +79,8 @@ public class Controller {
 
     public void submit() {
         toggleAnswerWindow();
-        ArrayList<Answer> answers = getAnswers();
-        Collections.sort(answers);
-        ArrayList<String> answersDisplay = new ArrayList<>();
-        for (Answer answer: answers) {
-            answersDisplay.add(answer.getWord());
-        }
-        answerTextField.setItems(FXCollections.observableArrayList(answersDisplay));
+        ArrayList<String> answers = getAnswers();
+        answerTextField.setItems(FXCollections.observableArrayList(answers));
     }
 
     public void startAgain() {
@@ -113,7 +108,7 @@ public class Controller {
         transition.play();
     }
 
-    private ArrayList<Answer> getAnswers() {
+    private ArrayList<String> getAnswers() {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();

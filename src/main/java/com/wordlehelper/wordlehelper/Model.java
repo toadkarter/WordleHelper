@@ -2,6 +2,7 @@ package com.wordlehelper.wordlehelper;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // TODO: Refactor the generation of answers into a separate class
 public class Model {
@@ -13,12 +14,21 @@ public class Model {
         dictionary = new Dictionary();
     }
 
-    public ArrayList<Answer> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
+    public ArrayList<String> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
         guess = new Guess(greenLetters, yellowLetters, greyLetters);
         answers = new ArrayList<>();
         String answer = "";
         generatePotentialAnswers(guess.getCorrectLetters(), answer);
-        return answers;
+        Collections.sort(answers);
+        return getWordsFromAnswerList();
+    }
+
+    private ArrayList<String> getWordsFromAnswerList() {
+        ArrayList<String> answersDisplay = new ArrayList<>();
+        for (Answer answer: answers) {
+            answersDisplay.add(answer.getWord());
+        }
+        return answersDisplay;
     }
 
     private void generatePotentialAnswers(String currentGuess, String answer) {
