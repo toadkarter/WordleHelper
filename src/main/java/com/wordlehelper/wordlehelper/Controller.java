@@ -1,12 +1,17 @@
 package com.wordlehelper.wordlehelper;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -19,6 +24,12 @@ public class Controller {
     @FXML
     private TextField wrongLettersContainer;
 
+    @FXML
+    private AnchorPane answerWindow;
+
+    @FXML
+    private ListView<String> answerTextField;
+
     private Model model;
 
     public void initialize() {
@@ -30,11 +41,12 @@ public class Controller {
     }
 
     public void submit() {
+        answerWindow.setVisible(true);
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
-
-        model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
+        ArrayList<String> answers = model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
+        answerTextField.setItems(FXCollections.observableArrayList(answers));
     }
 
     private String getGreenLetters() {

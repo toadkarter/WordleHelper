@@ -13,11 +13,11 @@ public class Model {
         dictionary = new Dictionary();
     }
 
-    public void getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
+    public ArrayList<String> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
         guess = new Guess(greenLetters, yellowLetters, greyLetters);
         String answer = "";
         generatePotentialAnswers(guess.getCorrectLetters(), answer);
-        System.out.println(answers);
+        return answers;
     }
 
     private void generatePotentialAnswers(String currentGuess, String answer) {
