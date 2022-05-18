@@ -2,11 +2,11 @@ package com.wordlehelper.wordlehelper;
 
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -18,8 +18,7 @@ public class Controller {
 
     @FXML
     private HBox correctLettersBox;
-
-    private ArrayList<TextField> correctLettersContainer = new ArrayList<>();
+    private final ArrayList<TextField> correctLettersContainer = new ArrayList<>();
 
     @FXML
     private TextField includedLettersContainer;
@@ -40,13 +39,34 @@ public class Controller {
         try {
             model = new Model();
             transition = new FadeTransition(Duration.millis(250), answerWindow);
+            initAllLetterContainers();
 
-            for (Node correctLetterField: correctLettersBox.getChildren()) {
-                correctLettersContainer.add((TextField)correctLetterField);
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void initAllLetterContainers() {
+        initCorrectLettersContainer();
+        setTextFieldToUpperCaseOnly(includedLettersContainer);
+        setTextFieldToUpperCaseOnly(wrongLettersContainer);
+    }
+
+    private void initCorrectLettersContainer() {
+        for (Node correctLetterNode: correctLettersBox.getChildren()) {
+            TextField correctLetterField = (TextField)correctLetterNode;
+            setTextFieldToUpperCaseOnly(correctLetterField);
+            correctLettersContainer.add(correctLetterField);
+        }
+    }
+
+    private void setTextFieldToUpperCaseOnly(TextField textField) {
+        TextFormatter<Object> upperCaseFormatter = new TextFormatter<>((change -> {
+            change.setText(change.getText().toUpperCase());
+            return change;
+        }));
+
+        textField.setTextFormatter(upperCaseFormatter);
     }
 
     public void submit() {
@@ -80,11 +100,14 @@ public class Controller {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();
+        System.out.println("In the controller:");
+        System.out.println("Green letters are " + greenLetters);
+        System.out.println("Yellow letters are " + yellowLetters);
+        System.out.println("Grey letters are " + greyLetters);
         return model.getPossibleAnswers(greenLetters, yellowLetters, greyLetters);
     }
 
     private String getGreenLetters() {
-        ObservableList<Node> greenLetters = correctLettersBox.getChildren();
         StringBuilder correctLetters = new StringBuilder();
         for (TextField correctLetter: correctLettersContainer) {
             addGreenLetter(correctLetters, correctLetter);
@@ -106,6 +129,7 @@ public class Controller {
         clearCorrectLetters();
         includedLettersContainer.clear();
         wrongLettersContainer.clear();
+        answerTextField.getItems().clear();
     }
 
     private void clearCorrectLetters() {

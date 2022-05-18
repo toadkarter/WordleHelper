@@ -1,14 +1,17 @@
 package com.wordlehelper.wordlehelper;
 
+
 public class Guess {
     private final String correctLetters;
     private final String includedLetters;
     private final String possibleLetters;
+    private final StringBuilder alphabet;
 
     public Guess(String correctLetters, String includedLetters, String wrongLetters) {
+        alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
         this.correctLetters = correctLetters.toLowerCase();
         this.includedLetters = includedLetters.toLowerCase();
-        this.possibleLetters = getPossibleLetters(wrongLetters);
+        this.possibleLetters = getPossibleLetters(wrongLetters.toLowerCase());
     }
 
     public String getCorrectLetters() {
@@ -24,22 +27,17 @@ public class Guess {
     }
 
     private String getPossibleLetters(String wrongLetters) {
-        StringBuilder alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
         for (char wrongLetter: wrongLetters.toCharArray()) {
-            removeWrongLetterFromAlphabet(alphabet, wrongLetter);
+            removeWrongLetterFromAlphabet(wrongLetter);
         }
         return alphabet.toString();
     }
 
-    private void removeWrongLetterFromAlphabet(StringBuilder alphabet, char wrongLetter) {
-        int locationOfWrongLetter = getLocationOfWrongLetter(alphabet, wrongLetter);
+    private void removeWrongLetterFromAlphabet(char wrongLetter) {
+        int locationOfWrongLetter =  alphabet.indexOf(String.valueOf(wrongLetter));
         if (locationOfWrongLetter != -1) {
             alphabet.deleteCharAt(locationOfWrongLetter);
         }
-    }
-
-    private int getLocationOfWrongLetter(StringBuilder alphabet, char wrongLetter) {
-        return alphabet.indexOf(String.valueOf(wrongLetter));
     }
 
     @Override

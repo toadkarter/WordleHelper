@@ -14,8 +14,13 @@ public class Model {
     }
 
     public ArrayList<String> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
+        System.out.println("In the get possible answers field: ");
         guess = new Guess(greenLetters, yellowLetters, greyLetters);
+        System.out.println(guess.getPossibleLetters());
+        System.out.println(guess.getCorrectLetters());
+        System.out.println(guess.getIncludedLetters());
         String answer = "";
+        System.out.println(guess.getPossibleLetters().toCharArray());
         generatePotentialAnswers(guess.getCorrectLetters(), answer);
         return answers;
     }
