@@ -29,7 +29,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <HBox fx:id="correctLettersContainer" alignment="TOP_CENTER" prefHeight="77.0" prefWidth="539.0">
+            <HBox fx:id="correctLettersBox" alignment="TOP_CENTER" prefHeight="77.0" prefWidth="539.0">
                <children>
                   <TextField alignment="CENTER" prefHeight="77.0" prefWidth="61.0" styleClass="green-letter-panel">
                      <font>

@@ -5,12 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
@@ -19,7 +17,9 @@ import java.util.ArrayList;
 public class Controller {
 
     @FXML
-    private HBox correctLettersContainer;
+    private HBox correctLettersBox;
+
+    private ArrayList<TextField> correctLettersContainer = new ArrayList<>();
 
     @FXML
     private TextField includedLettersContainer;
@@ -40,6 +40,10 @@ public class Controller {
         try {
             model = new Model();
             transition = new FadeTransition(Duration.millis(250), answerWindow);
+
+            for (Node correctLetterField: correctLettersBox.getChildren()) {
+                correctLettersContainer.add((TextField)correctLetterField);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -58,11 +62,9 @@ public class Controller {
 
     private void toggleAnswerWindow() {
         if (!answerWindow.isDisable()) {
-            System.out.println("Fading out");
             fadeAnswerWindow(1, 0);
             answerWindow.setDisable(true);
         } else {
-            System.out.println("Fading in");
             answerWindow.setDisable(false);
             fadeAnswerWindow(0, 1);
         }
@@ -82,10 +84,10 @@ public class Controller {
     }
 
     private String getGreenLetters() {
-        ObservableList<Node> greenLetters = correctLettersContainer.getChildren();
+        ObservableList<Node> greenLetters = correctLettersBox.getChildren();
         StringBuilder correctLetters = new StringBuilder();
-        for (Node letter: greenLetters) {
-            addGreenLetter(correctLetters, (TextField) letter);
+        for (TextField correctLetter: correctLettersContainer) {
+            addGreenLetter(correctLetters, correctLetter);
         }
         return correctLetters.toString();
     }
@@ -107,8 +109,8 @@ public class Controller {
     }
 
     private void clearCorrectLetters() {
-        for (Node correctLetter: correctLettersContainer.getChildren()) {
-            ((TextField)correctLetter).clear();
+        for (TextField correctLetter: correctLettersContainer) {
+            correctLetter.clear();
         }
     }
 }
