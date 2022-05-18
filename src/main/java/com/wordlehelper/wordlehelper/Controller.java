@@ -13,6 +13,7 @@ import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Controller {
 
@@ -78,8 +79,13 @@ public class Controller {
 
     public void submit() {
         toggleAnswerWindow();
-        ArrayList<String> answers = getAnswers();
-        answerTextField.setItems(FXCollections.observableArrayList(answers));
+        ArrayList<Answer> answers = getAnswers();
+        Collections.sort(answers);
+        ArrayList<String> answersDisplay = new ArrayList<>();
+        for (Answer answer: answers) {
+            answersDisplay.add(answer.getWord());
+        }
+        answerTextField.setItems(FXCollections.observableArrayList(answersDisplay));
     }
 
     public void startAgain() {
@@ -107,7 +113,7 @@ public class Controller {
         transition.play();
     }
 
-    private ArrayList<String> getAnswers() {
+    private ArrayList<Answer> getAnswers() {
         String greenLetters = getGreenLetters();
         String yellowLetters = includedLettersContainer.getText();
         String greyLetters = wrongLettersContainer.getText();

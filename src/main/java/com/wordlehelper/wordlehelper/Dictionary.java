@@ -3,9 +3,7 @@ package com.wordlehelper.wordlehelper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 // Credit: https://github.com/dwyl/english-words
 public class Dictionary {
@@ -24,6 +22,10 @@ public class Dictionary {
 
     public boolean isInDictionary(String word) {
         return dictionary.containsKey(word);
+    }
+
+    public Double getFrequency(String word) {
+        return dictionary.get(word);
     }
 
 }

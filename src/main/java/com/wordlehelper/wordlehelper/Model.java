@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class Model {
     Dictionary dictionary;
     Guess guess;
-    ArrayList<String> answers;
+    ArrayList<Answer> answers;
 
     public Model() throws FileNotFoundException {
         dictionary = new Dictionary();
     }
 
-    public ArrayList<String> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
+    public ArrayList<Answer> getPossibleAnswers(String greenLetters, String yellowLetters, String greyLetters) {
         guess = new Guess(greenLetters, yellowLetters, greyLetters);
         answers = new ArrayList<>();
         String answer = "";
@@ -38,7 +38,7 @@ public class Model {
 
     private void checkIfValidAnswer(String answer) {
         if (dictionary.isInDictionary(answer) && hasIncludedLetters(answer)) {
-            answers.add(answer);
+            answers.add(new Answer(answer, dictionary.getFrequency(answer)));
         }
     }
 
