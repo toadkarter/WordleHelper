@@ -129,10 +129,10 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="answerWindow" prefHeight="393.0" prefWidth="358.0" visible="false">
+      <AnchorPane fx:id="answerWindow" disable="true" opacity="0.0" prefHeight="393.0" prefWidth="358.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="500.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-            <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="330.0" prefWidth="319.0" style="-fx-background-color: #fbf6ed;">
+            <VBox alignment="TOP_CENTER" layoutX="91.0" layoutY="76.0" prefHeight="330.0" prefWidth="319.0" styleClass="answer-window">
                <children>
                   <Label text="ANSWERS" textAlignment="CENTER">
                      <font>

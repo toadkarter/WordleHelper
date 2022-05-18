@@ -1,5 +1,6 @@
 package com.wordlehelper.wordlehelper;
 
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -32,24 +34,44 @@ public class Controller {
     private ListView<String> answerTextField;
 
     private Model model;
+    private FadeTransition transition;
 
     public void initialize() {
         try {
             model = new Model();
+            transition = new FadeTransition(Duration.millis(250), answerWindow);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public void submit() {
-        answerWindow.setVisible(true);
+        toggleAnswerWindow();
         ArrayList<String> answers = getAnswers();
         answerTextField.setItems(FXCollections.observableArrayList(answers));
     }
 
     public void back() {
-        answerWindow.setVisible(false);
+        toggleAnswerWindow();
         clearTextFields();
+    }
+
+    private void toggleAnswerWindow() {
+        if (!answerWindow.isDisable()) {
+            System.out.println("Fading out");
+            fadeAnswerWindow(1, 0);
+            answerWindow.setDisable(true);
+        } else {
+            System.out.println("Fading in");
+            answerWindow.setDisable(false);
+            fadeAnswerWindow(0, 1);
+        }
+    }
+
+    private void fadeAnswerWindow(double startOpacity, double endOpacity) {
+        transition.setFromValue(startOpacity);
+        transition.setToValue(endOpacity);
+        transition.play();
     }
 
     private ArrayList<String> getAnswers() {
