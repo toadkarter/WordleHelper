@@ -10,14 +10,14 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
-//TODO: Add Icon
-//TODO: Add error handling in Guess constructor
+// Icon Credit: Wordle Subreddit
 public class WordleHelper extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(WordleHelper.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
+        Image icon = new Image("file:src/icon.png");
+        stage.getIcons().add(icon);
         stage.setTitle("WordleHelper");
         stage.setScene(scene);
         stage.setResizable(false);

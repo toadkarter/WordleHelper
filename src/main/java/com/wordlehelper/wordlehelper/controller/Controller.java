@@ -1,7 +1,7 @@
-package com.wordlehelper.wordlehelper;
+package com.wordlehelper.wordlehelper.controller;
 
+import com.wordlehelper.wordlehelper.controller.controls.Transitions;
 import com.wordlehelper.wordlehelper.model.Model;
-import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -34,12 +33,11 @@ public class Controller {
     private ListView<String> answerTextField;
 
     private Model model;
-    private FadeTransition transition;
 
     public void initialize() {
         try {
             model = new Model();
-            transition = new FadeTransition(Duration.millis(250), answerWindow);
+
             initAllLetterContainers();
 
         } catch (FileNotFoundException e) {
@@ -49,19 +47,19 @@ public class Controller {
 
     private void initAllLetterContainers() {
         initCorrectLettersContainer();
-        setTextFieldToUpperCaseOnly(includedLettersContainer, false);
-        setTextFieldToUpperCaseOnly(wrongLettersContainer, false);
+        setTextFieldFormatting(includedLettersContainer, false);
+        setTextFieldFormatting(wrongLettersContainer, false);
     }
 
     private void initCorrectLettersContainer() {
         for (Node correctLetterNode: correctLettersBox.getChildren()) {
             TextField correctLetterField = (TextField)correctLetterNode;
-            setTextFieldToUpperCaseOnly(correctLetterField, true);
+            setTextFieldFormatting(correctLetterField, true);
             correctLettersContainer.add(correctLetterField);
         }
     }
 
-    private void setTextFieldToUpperCaseOnly(TextField textField, boolean correctLetterTextField) {
+    private void setTextFieldFormatting(TextField textField, boolean correctLetterTextField) {
         TextFormatter<Object> textFieldFormatter = new TextFormatter<>((change -> {
             if (change.getText().isEmpty()) { return change; }
             if (!change.getText().matches("[A-Za-z]")) { return null; }
@@ -81,34 +79,18 @@ public class Controller {
     }
 
     public void submit() {
-        toggleAnswerWindow();
+        Transitions.toggleAnswerWindow(answerWindow);
         ArrayList<String> answers = getAnswers();
         answerTextField.setItems(FXCollections.observableArrayList(answers));
     }
 
     public void startAgain() {
-        toggleAnswerWindow();
+        Transitions.toggleAnswerWindow(answerWindow);
         clearTextFields();
     }
 
     public void keepGuessing() {
-        toggleAnswerWindow();
-    }
-
-    private void toggleAnswerWindow() {
-        if (!answerWindow.isDisable()) {
-            fadeAnswerWindow(1, 0);
-            answerWindow.setDisable(true);
-        } else {
-            answerWindow.setDisable(false);
-            fadeAnswerWindow(0, 1);
-        }
-    }
-
-    private void fadeAnswerWindow(double startOpacity, double endOpacity) {
-        transition.setFromValue(startOpacity);
-        transition.setToValue(endOpacity);
-        transition.play();
+        Transitions.toggleAnswerWindow(answerWindow);
     }
 
     private ArrayList<String> getAnswers() {
