@@ -3,6 +3,7 @@ package com.wordlehelper.wordlehelper.model.services;
 import com.wordlehelper.wordlehelper.model.Guess;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,7 +13,7 @@ public class AnswerGenerator {
     private Guess guess;
     private ArrayList<Answer> answers;
 
-    public AnswerGenerator() throws FileNotFoundException {
+    public AnswerGenerator() throws IOException {
         dictionary = new Dictionary();
     }
 
