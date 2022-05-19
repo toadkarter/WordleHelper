@@ -1,5 +1,7 @@
 package com.wordlehelper.wordlehelper.model.services;
 
+import com.wordlehelper.wordlehelper.WordleHelper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -10,7 +12,7 @@ public class Dictionary {
     private final HashMap<String, Double> dictionary = new HashMap<>();
 
     public Dictionary() throws FileNotFoundException {
-        Scanner textFile = new Scanner(new File("src/word_frequencies.txt"));
+        Scanner textFile = new Scanner(new File(Dictionary.class.getResource("word_frequencies.txt").getPath()));
         while (textFile.hasNext()) {
             String[] currentLine = textFile.next().split(":", 2);
             String word = currentLine[0];

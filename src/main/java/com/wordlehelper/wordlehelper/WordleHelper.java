@@ -16,7 +16,7 @@ public class WordleHelper extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(WordleHelper.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        Image icon = new Image("file:src/icon.png");
+        Image icon = new Image(Objects.requireNonNull(WordleHelper.class.getResource("icon.png")).toString());
         stage.getIcons().add(icon);
         stage.setTitle("WordleHelper");
         stage.setScene(scene);
